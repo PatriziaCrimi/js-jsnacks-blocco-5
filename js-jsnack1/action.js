@@ -37,21 +37,36 @@ $(document).ready(function () {
     },
   ]
   console.log('The array of racing bikes is: ' , racing_bikes);
+  console.log('');
 
-  // Scanning the array of bikes
-  var highest_weight = racing_bikes[0].weight;
-  console.log('First bike weight: ' , highest_weight);
+  // ---------------- Finding out the bike highest weight ----------------
+  var lowest_weight = racing_bikes[0].weight;
+  console.log(racing_bikes[0].name + ':' , lowest_weight , 'kilograms.');
+  // Scanning the array of bikes to compare the weights
   for (var i = 1; i < racing_bikes.length; i++) {
     var current_bike_weight = racing_bikes[i].weight;
-    console.log('Current bike weight: ', current_bike_weight);
-    if (current_bike_weight > highest_weight) {
-      highest_weight = current_bike_weight;
+    console.log(racing_bikes[i].name + ':' , current_bike_weight, 'kilograms.');
+    // Finding the lowest weight
+    if (current_bike_weight < lowest_weight) {
+      lowest_weight = current_bike_weight;
+      var lowest_weight_bike = racing_bikes[i].name;
     }
-    /*
-    // Scanning the single objects within the array
-    for (var key in racing_bikes[i]) {
-    }
-    */
   }
-  console.log('The highest bike weight is: ' , highest_weight);
+  console.log('');
+  // Check for same weight bikes (only if their weight is the lowest weight)
+  var same_weight_bikes = [];
+  // Scanning the array of bikes to look for same lowest weight bikes
+  for (i = 0; i < racing_bikes.length; i++) {
+    if (lowest_weight === racing_bikes[i].weight) {
+      same_weight_bikes.push(racing_bikes[i].name);
+    }
+  }
+  // Printing on screen the results
+  if (same_weight_bikes.length > 1) {
+    // If the array of same weight bikes has more than one element, there are more bikes sharing the same lowest weight
+    console.log('There are more bikes sharing the lowest weight of', lowest_weight ,'. They are:' , same_weight_bikes);
+  } else {
+    // If the array of same weight bikes has only one element, there is only one bike with that lowest weight
+    console.log('The bike with the lowest weight is: ' + lowest_weight_bike + ' weighing' , lowest_weight, 'kilograms.');
+  }
 });
