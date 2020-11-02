@@ -8,22 +8,45 @@ $(document).ready(function () {
   // Creating an array of names
   var names_list = ['William', 'Robert', 'Anne', 'Christian', 'Josephine', 'Karleen', 'Astrid', 'Clark', 'Judith'];
   console.log('The array containing the names is: ', names_list)
-  // Entering two numbers from the user
+
+  // Entering first number
   var first_num = parseInt(prompt('Please enter the first number.'));
+  // Checking if first number is valid (with function)
+  first_num = validNumber(first_num, names_list.length);
+  // Entering second number
   var second_num = parseInt(prompt('Now enter the second number.'));
+  // Checking if second number is valid (with function)
+  second_num = validNumber(second_num, names_list.length);
+  // Checking if the two numbers are different
+  while (second_num === first_num) {
+    second_num = parseInt(prompt('ERROR. You cannot enter two equal figures. Please enter a number ranging from 1 to ' + names_list.length + ' and different from ' + first_num + '.'));
+    second_num = validNumber(second_num, names_list.length);
+  }
   console.log('The two numbers entered by the user are:', first_num, 'and', second_num, '.');
+
   // Checking highest and lowest number
   if (first_num > second_num) {
-    var max_num = first_num;
-    var min_num = second_num -1;
+    var highest_num = first_num;
+    var lowest_num = second_num -1;
   } else {
-    var max_num = second_num;
-    var min_num = first_num -1;
+    var highest_num = second_num;
+    var lowest_num = first_num -1;
   }
+
   // Creating the new array containing the names included in the user's numbers range
   var names_final_array = [];
-  for (var i = min_num; i < max_num; i++) {
+  for (var i = lowest_num; i < highest_num; i++) {
     names_final_array.push(names_list[i]);
   }
-console.log('The new array containing the names included in the user\'s numbers range is: ', names_final_array);
+  console.log('The new array containing the names included in the user\'s numbers range is: ', names_final_array);
 });
+
+// ---------------------------- FUNCTIONS ----------------------------
+
+// Checking valid input when entering the numbers
+function validNumber(num, maxNum) {
+  while (isNaN(num) || num <= 0 || num > maxNum) {
+    num = parseInt(prompt('ERROR. The value you entered is not valid. Please enter a number ranging from 1 to ' + maxNum + '.'));
+  };
+  return num;
+}
