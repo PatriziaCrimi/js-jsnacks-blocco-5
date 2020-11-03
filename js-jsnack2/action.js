@@ -35,9 +35,25 @@ $(document).ready(function () {
 
   // Creating the new array containing the names included in the user's numbers range
   var names_final_array = [];
+
+  // ******************* SOLUTION 1 *******************
+  // Scanning only part of the names array (only what is included in the two numbers given by the user)
   for (var i = lowest_num; i < highest_num; i++) {
     names_final_array.push(names_list[i]);
   }
+  /*
+  // ******************* SOLUTION 2 *******************
+  // Scanning the whole array of names
+  for (i = 0; i < names_list.length; i++) {
+    if (i >= lowest_num && i < highest_num) {
+      names_final_array.push(names_list[i]);
+    }
+  }
+  */
+  /*
+  // ******************* SOLUTION 3 - SLICE *******************
+  names_final_array = names_list.slice(lowest_num, highest_num);
+  */
   console.log('The new array containing the names included in the user\'s numbers range is: ', names_final_array);
 });
 

@@ -7,7 +7,7 @@ che contiene una lettera casuale.
 
 $(document).ready(function () {
   // Creating an array of objects
-  var movies = [
+  var movies_list = [
     {
       'title' : 'Fight Club',
       'director' : 'David Fincher',
@@ -49,24 +49,38 @@ $(document).ready(function () {
       'year': '2007',
     },
   ];
-  console.log('The array of movies is:' , movies);
+  console.log('The array of movies is:' , movies_list , '\n\n');
 
-  // Creating a copy of the movies array
-  var movies_copy = movies;
-  console.log('The copy of the movies array is:', movies_copy);
-  console.log('');
+  // Creating a copy of the movies array and adding the new property and value
+  var movies_copy = [];
+  // Scanning the original movies array to copy it element by element
+  for (let i = 0; i < movies_list.length; i++) {
+    // Copying each object from the original array to its copy (one by one)
+    var single_movie_copy = {
+      // *** DOT NOTATION ***
+      title : movies_list[i].title,
+      director : movies_list[i].director,
+      year : movies_list[i].year,
+      /*
+      // *** SQUARE BRACKETS NOTATION ***
+      title : movies_list[i]['title'],
+      director : movies_list[i]['director'],
+      year : movies_list[i]['year'],
+      */
+    }
+    movies_copy.push(single_movie_copy);
+  }
 
   // Scanning the copy of the movies array to add the new property and value
-  for (var i = 0; i < movies_copy.length; i++) {
+  for (let i = 0; i < movies_copy.length; i++) {
     // Generating random letter (with function)
     var random_letter = getRndCharacter();
     console.log('Random letter: ' + random_letter);
-    // Adding "position : random letter" in each object (key : value)
+    // Adding "position : random letter" to every object (key : value)
     movies_copy[i].position = random_letter;
-    // movies_copy[i]['position'] = random_letter;
   }
-  console.log('');
-  console.log('The copy of the movies array updated with the new property \'position\' and values is: ' , movies_copy);
+  console.log('\n\n The original movies array is unchanged:', movies_list , '\n\n');
+  console.log('The copy of the movies array updated with the new property \'position\' and its values is: ' , movies_copy);
 });
 
 // ------------------------------- FUNCTIONS -------------------------------
@@ -74,5 +88,11 @@ $(document).ready(function () {
 // Generating random letter
 function getRndCharacter() {
   const alphabet = 'abcdefghijklmnopqrstuvwxyz';
+  // *** SOLUTION 1 - optimized ***
   return alphabet[Math.floor(Math.random() * alphabet.length)];
+  /*
+  // *** SOLUTION 2 - charAt ***
+  var index = Math.floor(Math.random() * alphabet.length);
+  return alphabet.charAt(index);
+  */
 }

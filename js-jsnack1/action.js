@@ -17,7 +17,7 @@ $(document).ready(function () {
     },
     {
       'name' : 'Argon 18',
-      'weight' : 7.8//Kilograms
+      'weight' : 7.8, //Kilograms
     },
     {
       'name' : 'Basso Diamante',
@@ -29,7 +29,7 @@ $(document).ready(function () {
     },
     {
       'name' : 'Bmc Teammachine',
-      'weight' : 9.5//Kilograms
+      'weight' : 9.5, //Kilograms
     },
     {
       'name' : 'Emme4 Superlight',
@@ -44,11 +44,11 @@ $(document).ready(function () {
   console.log(racing_bikes[0].name + ':' , lowest_weight , 'kilograms.');
   // Scanning the array of bikes to compare the weights
   for (var i = 1; i < racing_bikes.length; i++) {
-    var current_bike_weight = racing_bikes[i].weight;
-    console.log(racing_bikes[i].name + ':' , current_bike_weight, 'kilograms.');
+    var current_weight = racing_bikes[i].weight;
+    console.log(racing_bikes[i].name + ':' , current_weight, 'kilograms.');
     // Finding the lowest weight
-    if (current_bike_weight < lowest_weight) {
-      lowest_weight = current_bike_weight;
+    if (current_weight < lowest_weight) {
+      lowest_weight = current_weight;
       var lowest_weight_bike = racing_bikes[i].name;
     }
   }
