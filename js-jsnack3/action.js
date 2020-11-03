@@ -53,20 +53,16 @@ $(document).ready(function () {
 
   // Creating a copy of the movies array and adding the new property and value
   var movies_copy = [];
+
+  // --------------------- SOLUTION 1 - FOR-IN ---------------------
+
   // Scanning the original movies array to copy it element by element
   for (let i = 0; i < movies_list.length; i++) {
-    // Copying each object from the original array to its copy (one by one)
-    var single_movie_copy = {
-      // *** DOT NOTATION ***
-      title : movies_list[i].title,
-      director : movies_list[i].director,
-      year : movies_list[i].year,
-      /*
-      // *** SQUARE BRACKETS NOTATION ***
-      title : movies_list[i]['title'],
-      director : movies_list[i]['director'],
-      year : movies_list[i]['year'],
-      */
+    // Scanning every object from the original array to copy its properties and values (one by one)
+    var single_movie_copy = {};
+    for (var key in movies_list[i]) {
+      // Creating the current property : value
+      single_movie_copy[key] = movies_list[i][key];
     }
     movies_copy.push(single_movie_copy);
   }
@@ -79,6 +75,32 @@ $(document).ready(function () {
     // Adding "position : random letter" to every object (key : value)
     movies_copy[i].position = random_letter;
   }
+
+  /*
+  // ------------ SOLUTION 2 - ADDING EACH PROPERTY : VALUE one by one ------------
+  // Scanning the original movies array to copy it element by element
+  for (let i = 0; i < movies_list.length; i++) {
+    // Generating random letter
+    var random_letter = getRndCharacter();
+    console.log('Random letter: ' + random_letter);
+    // Copying each object from the original array to its copy (one by one)
+    var single_movie_copy = {
+      // *** DOT NOTATION ***
+      title : movies_list[i].title,
+      director : movies_list[i].director,
+      year : movies_list[i].year,
+      position : random_letter,
+
+      // *** SQUARE BRACKETS NOTATION ***
+      // title : movies_list[i]['title'],
+      // director : movies_list[i]['director'],
+      // year : movies_list[i]['year'],
+      // position : random_letter,
+    }
+    movies_copy.push(single_movie_copy);
+  }
+  */
+
   console.log('\n\n The original movies array is unchanged:', movies_list , '\n\n');
   console.log('The copy of the movies array updated with the new property \'position\' and its values is: ' , movies_copy);
 });
