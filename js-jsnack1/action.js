@@ -39,7 +39,10 @@ $(document).ready(function () {
   console.log('The array of racing bikes is: ' , racing_bikes);
   console.log('');
 
-  // ---------------- Finding out the bike highest weight ----------------
+
+  // ---------------- Finding out the bike lowest weight ----------------
+
+  // Assigning the lowest weight to the first bike
   var lowest_weight = racing_bikes[0].weight;
   console.log(racing_bikes[0].name + ':' , lowest_weight , 'kilograms.');
   // Scanning the array of bikes to compare the weights
