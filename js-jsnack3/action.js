@@ -51,40 +51,44 @@ $(document).ready(function () {
   ];
   console.log('The array of movies is:' , movies_list , '\n\n');
 
-  // Creating a copy of the movies array and adding the new property and value
+  // Creating a copy of the movies array and adding the new property (key : value))
   var movies_copy = [];
 
   // --------------------- SOLUTION 1 - FOR-IN ---------------------
 
+  var single_movie_copy;
   // Scanning the original movies array to copy it element by element
   for (let i = 0; i < movies_list.length; i++) {
-    // Scanning every object from the original array to copy its properties and values (one by one)
-    var single_movie_copy = {};
-    for (var key in movies_list[i]) {
+    // Scanning every object from the original array to copy its properties (key : value) one by one
+    single_movie_copy = {};
+    for (let key in movies_list[i]) {
       // Creating the current property : value
       single_movie_copy[key] = movies_list[i][key];
     }
     movies_copy.push(single_movie_copy);
   }
 
-  // Scanning the copy of the movies array to add the new property and value
+  // Scanning the copy of the movies array to add the new property (key : value)
+  var random_letter;
   for (let i = 0; i < movies_copy.length; i++) {
     // Generating random letter (with function)
-    var random_letter = getRndCharacter();
+    random_letter = getRndCharacter();
     console.log('Random letter: ' + random_letter);
     // Adding "position : random letter" to every object (key : value)
     movies_copy[i].position = random_letter;
   }
 
   /*
-  // ------------ SOLUTION 2 - ADDING EACH PROPERTY : VALUE one by one ------------
+  // ------------ SOLUTION 2 - ADDING EACH PROPERTY (KEY : VALUE) one by one ------------
+  var random_letter;
+  var single_movie_copy;
   // Scanning the original movies array to copy it element by element
   for (let i = 0; i < movies_list.length; i++) {
     // Generating random letter
-    var random_letter = getRndCharacter();
+    random_letter = getRndCharacter();
     console.log('Random letter: ' + random_letter);
     // Copying each object from the original array to its copy (one by one)
-    var single_movie_copy = {
+    single_movie_copy = {
       // *** DOT NOTATION ***
       title : movies_list[i].title,
       director : movies_list[i].director,
@@ -114,7 +118,7 @@ function getRndCharacter() {
   return alphabet[Math.floor(Math.random() * alphabet.length)];
   /*
   // *** SOLUTION 2 - charAt ***
-  var index = Math.floor(Math.random() * alphabet.length);
+  let index = Math.floor(Math.random() * alphabet.length);
   return alphabet.charAt(index);
   */
 }

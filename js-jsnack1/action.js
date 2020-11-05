@@ -44,15 +44,17 @@ $(document).ready(function () {
 
   // Assigning the lowest weight to the first bike
   var lowest_weight = racing_bikes[0].weight;
+  var lowest_weight_bike;
+  var current_weight;
   console.log(racing_bikes[0].name + ':' , lowest_weight , 'kilograms.');
   // Scanning the array of bikes to compare the weights
   for (var i = 1; i < racing_bikes.length; i++) {
-    var current_weight = racing_bikes[i].weight;
+    current_weight = racing_bikes[i].weight;
     console.log(racing_bikes[i].name + ':' , current_weight, 'kilograms.');
     // Finding the lowest weight
     if (current_weight < lowest_weight) {
       lowest_weight = current_weight;
-      var lowest_weight_bike = racing_bikes[i].name;
+      lowest_weight_bike = racing_bikes[i].name;
     }
   }
   console.log('');

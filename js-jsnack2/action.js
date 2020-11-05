@@ -25,12 +25,14 @@ $(document).ready(function () {
   console.log('The two numbers entered by the user are:', first_num, 'and', second_num, '.');
 
   // Checking highest and lowest number
+  var highest_num;
+  var lowest_num;
   if (first_num > second_num) {
-    var highest_num = first_num;
-    var lowest_num = second_num -1;
+    highest_num = first_num;
+    lowest_num = second_num -1;
   } else {
-    var highest_num = second_num;
-    var lowest_num = first_num -1;
+    highest_num = second_num;
+    lowest_num = first_num -1;
   }
 
   // Creating the new array containing the names included in the user's numbers range
