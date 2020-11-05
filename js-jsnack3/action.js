@@ -88,7 +88,7 @@ $(document).ready(function () {
     random_letter = getRndCharacter();
     console.log('Random letter: ' + random_letter);
     // Copying each object from the original array to its copy (one by one)
-    single_movie_copy = {
+    let single_movie_copy = {
       // *** DOT NOTATION ***
       title : movies_list[i].title,
       director : movies_list[i].director,
@@ -107,6 +107,10 @@ $(document).ready(function () {
 
   console.log('\n\n The original movies array is unchanged:', movies_list , '\n\n');
   console.log('The copy of the movies array updated with the new property \'position\' and its values is: ' , movies_copy);
+  // Print on screen HTML
+  for (let i = 0; i < movies_copy.length; i++) {
+    $('#results').append('<p>' + movies_copy[i].title + ', ' + movies_copy[i].director + ', ' + movies_copy[i].year + ', position: ' + movies_copy[i].position + '.</p>');
+  }
 });
 
 // ------------------------------- FUNCTIONS -------------------------------
