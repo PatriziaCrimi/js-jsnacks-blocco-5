@@ -6,34 +6,36 @@ Stampare a schermo la bici con peso minore.
 
 $(document).ready(function () {
   // Creating the racing bikes array (array of objects)
+  var min_weight = 3;
+  var max_weight = 10;
   var racing_bikes = [
     {
       'name' : 'Alchemy Atlas',
-      'weight' : 8, //Kilograms
+      'weight' : getRandomNumber(min_weight, max_weight), // Kilograms
     },
     {
       'name' : 'ARC8 Escapee',
-      'weight' : 7, //Kilograms
+      'weight' : getRandomNumber(min_weight, max_weight), // Kilograms
     },
     {
       'name' : 'Argon 18',
-      'weight' : 7.8, //Kilograms
+      'weight' : getRandomNumber(min_weight, max_weight), // Kilograms
     },
     {
       'name' : 'Basso Diamante',
-      'weight' : 10, //Kilograms
+      'weight' : getRandomNumber(min_weight, max_weight), // Kilograms
     },
     {
       'name' : 'BH Ultralight',
-      'weight' : 6.9, //Kilograms
+      'weight' : getRandomNumber(min_weight, max_weight), // Kilograms
     },
     {
       'name' : 'Bmc Teammachine',
-      'weight' : 9.5, //Kilograms
+      'weight' : getRandomNumber(min_weight, max_weight), // Kilograms
     },
     {
       'name' : 'Emme4 Superlight',
-      'weight' : 6.8, //Kilograms
+      'weight' :getRandomNumber(min_weight, max_weight), // Kilograms
     },
   ]
   console.log('The array of racing bikes is: ' , racing_bikes);
@@ -45,11 +47,10 @@ $(document).ready(function () {
   // Assigning the lowest weight to the first bike
   var lowest_weight = racing_bikes[0].weight;
   var lowest_weight_bike;
-  var current_weight;
   console.log(racing_bikes[0].name + ':' , lowest_weight , 'kilograms.');
   // Scanning the array of bikes to compare the weights
-  for (var i = 1; i < racing_bikes.length; i++) {
-    current_weight = racing_bikes[i].weight;
+  for (let i = 1; i < racing_bikes.length; i++) {
+    let current_weight = racing_bikes[i].weight;
     console.log(racing_bikes[i].name + ':' , current_weight, 'kilograms.');
     // Finding the lowest weight
     if (current_weight < lowest_weight) {
@@ -61,7 +62,7 @@ $(document).ready(function () {
   // Check for same weight bikes (only if their weight is the lowest weight)
   var same_weight_bikes = [];
   // Scanning the array of bikes to look for same lowest weight bikes
-  for (i = 0; i < racing_bikes.length; i++) {
+  for (let i = 0; i < racing_bikes.length; i++) {
     if (lowest_weight === racing_bikes[i].weight) {
       same_weight_bikes.push(racing_bikes[i].name);
     }
@@ -69,9 +70,21 @@ $(document).ready(function () {
   // Printing on screen the results
   if (same_weight_bikes.length > 1) {
     // If the array of same weight bikes has more than one element, there are more bikes sharing the same lowest weight
-    console.log('There are more bikes sharing the lowest weight of', lowest_weight ,'. They are:' , same_weight_bikes);
+    console.log('There are more bikes sharing the lowest weight of', lowest_weight ,'. They are:' , same_weight_bikes , '.');
+    // Printing on screen HTML
+    $('#results > p').text('There are more bikes sharing the lowest weight of' + lowest_weight + '. They are: ' + same_weight_bikes + '.');
   } else {
     // If the array of same weight bikes has only one element, there is only one bike with that lowest weight
     console.log('The bike with the lowest weight is: ' + lowest_weight_bike + ' weighing' , lowest_weight, 'kilograms.');
+    // Printing on screen HTML
+    $('#results > p').text('The bike with the lowest weight is: ' + lowest_weight_bike + ' weighing ' + lowest_weight + ' kilograms.');
   }
 });
+
+// ------------------------------ FUNCTIONS ------------------------------
+
+// Generating random number
+function getRandomNumber(min, max) {
+  let multiplier = 100; // rounding to two figures
+  return Math.round((Math.random() * (max - min + 1) + min) * multiplier) / multiplier;
+}
